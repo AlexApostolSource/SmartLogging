@@ -12,8 +12,14 @@ let package = Package(
         ),
     ],
     targets: [
+        .plugin(
+            name: "SwiftLintBuildToolPlugin",
+            capability: .buildTool()
+        ),
         .target(
-            name: "SmartLogging"
+            name: "SmartLogging", plugins: [
+                .plugin(name: "SwiftLintBuildToolPlugin")
+            ]
         ),
         .testTarget(
             name: "SmartLoggingTests",
