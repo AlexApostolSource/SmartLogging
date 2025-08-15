@@ -7,5 +7,5 @@
 import Foundation
 
 public protocol Category {
-    var name: String { get          }
+    var name: String { get }
 }

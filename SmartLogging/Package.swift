@@ -9,7 +9,7 @@ let package = Package(
         .library(
             name: "SmartLogging",
             targets: ["SmartLogging"]
-        ),
+        )
     ],
     targets: [
         .plugin(
@@ -24,6 +24,6 @@ let package = Package(
         .testTarget(
             name: "SmartLoggingTests",
             dependencies: ["SmartLogging"]
-        ),
+        )
     ]
 )
