@@ -19,12 +19,8 @@ public protocol SmartConfigLoggingProtocol: Sendable, SmartLoggingProtocol {
     /// If a log is sent while the logger is being updated, the log will be handled by whichever
     /// logger instance is active when the lock is acquired.
     /// No logs will be lost or corrupted, but the specific logger used for concurrent operations cannot be guaranteed.
-    func config(config: SmartLoggingConfigProtocol) async
+    func config(config: SmartLogging) async
     func setGlobalLogLevel(_ level: LogLevel) async
-}
-
-public protocol SmartLoggingConfigProtocol: Sendable {
-    var subsystem: Subsystem { get set }
 }
 
 public final actor SmartLogging: SmartLoggingProtocol {
@@ -43,8 +39,8 @@ public final actor SmartLogging: SmartLoggingProtocol {
     /// If a log is sent while the logger is being updated, the log will be handled by whichever
     /// logger instance is active when the lock is acquired.
     /// No logs will be lost or corrupted, but the specific logger used for concurrent operations cannot be guaranteed.
-    public func config(config: SmartLoggingConfigProtocol) {
-        logger = Logger(subsystem: config.subsystem.name, category: config.subsystem.category.name)
+    public func config(config: SmartLogger) {
+        logger = config
     }
 
     public func setGlobalLogLevel(_ level: LogLevel) {
