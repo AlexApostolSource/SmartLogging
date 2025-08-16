@@ -9,7 +9,7 @@ import OSLog
 import Foundation
 
 public protocol SmartLogger {
-    func log(_ metadata: LogMetadata)
+    func log(_ metadata: SmartLogMetadata)
     init(subsystem: String, category: String)
     init()
     var logQueue: DispatchQueue { get }
@@ -21,11 +21,11 @@ extension Logger: SmartLogger {
         Logger.logQueue
     }
 
-    public func log(_ metadata: LogMetadata) {
+    public func log(_ metadata: SmartLogMetadata) {
         logQueue.async {
             log(
                 level: metadata.logLevel.asOSLogLevel,
-                "\(metadata.messageStart): \(metadata.message) \(metadata.propertiesStart): \(metadata.properties)"
+                "\(metadata.logMetadata.message)  \(metadata.logMetadata.properties)"
             )
         }
     }
