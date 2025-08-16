@@ -13,7 +13,7 @@ final class SmartLoggingTests: XCTestCase {
     }
 
     func makeLogMetadata(message: String = "msg", properties: [String: Any] = [:]) -> LogMetadata {
-        LogMetadata(properties: properties, message: message)
+        LogMetadata(properties: properties, message: message, logger: nil)
     }
 
     func testLogFiltersByLogLevel() async {

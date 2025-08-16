@@ -29,4 +29,15 @@ public struct SmartLogMetadata {
 public struct LogMetadata {
     public let properties: [String: Any]
     public let message: String
+    public let logger: SmartLogger?
+
+    public init(
+        properties: [String: Any],
+        message: String,
+        logger: SmartLogger? = nil
+    ) {
+        self.properties = properties
+        self.message = message
+        self.logger = logger
+    }
 }

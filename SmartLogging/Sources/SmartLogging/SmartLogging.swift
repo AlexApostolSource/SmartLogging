@@ -54,26 +54,32 @@ public final actor SmartLogging: SmartLoggingProtocol {
     }
 
     public func logDebug(_ metadata: LogMetadata) async {
-        await log(SmartLogMetadata(logLevel: .debug, logMetadata: metadata, logger: logger))
+        await log(
+            SmartLogMetadata(
+                logLevel: .debug,
+                logMetadata: metadata,
+                logger: metadata.logger ?? logger
+            )
+        )
     }
 
     public func logDefault(_ metadata: LogMetadata) async {
-        await log(SmartLogMetadata(logLevel: .default, logMetadata: metadata, logger: logger))
+        await log(SmartLogMetadata(logLevel: .default, logMetadata: metadata, logger: metadata.logger ?? logger))
     }
 
     public func logInfo(_ metadata: LogMetadata) async {
-        await log(SmartLogMetadata(logLevel: .info, logMetadata: metadata, logger: logger))
+        await log(SmartLogMetadata(logLevel: .info, logMetadata: metadata, logger: metadata.logger ?? logger))
     }
 
     public func logWarning(_ metadata: LogMetadata) async {
-        await log(SmartLogMetadata(logLevel: .warning, logMetadata: metadata, logger: logger))
+        await log(SmartLogMetadata(logLevel: .warning, logMetadata: metadata, logger: metadata.logger ?? logger))
     }
 
     public func logError(_ metadata: LogMetadata) async {
-        await log(SmartLogMetadata(logLevel: .error, logMetadata: metadata, logger: logger))
+        await log(SmartLogMetadata(logLevel: .error, logMetadata: metadata, logger: metadata.logger ?? logger))
     }
 
     public func logFault(_ metadata: LogMetadata) async {
-        await log(SmartLogMetadata(logLevel: .fault, logMetadata: metadata, logger: logger))
+        await log(SmartLogMetadata(logLevel: .fault, logMetadata: metadata, logger: metadata.logger ?? logger))
     }
 }
